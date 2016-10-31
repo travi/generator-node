@@ -7,5 +7,11 @@ module.exports = yeoman.Base.extend({
 
   configuring() {
     this.copy('_gitignore', '.gitignore');
+  },
+
+  writing() {
+    this.fs.writeJSON(this.destinationPath('package.json'), {
+      name: this.config.get('projectName')
+    });
   }
 });
