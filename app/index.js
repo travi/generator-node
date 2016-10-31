@@ -11,7 +11,8 @@ module.exports = yeoman.Base.extend({
 
   writing() {
     this.fs.writeJSON(this.destinationPath('package.json'), {
-      name: this.config.get('projectName')
+      name: this.config.get('projectName'),
+      license: this.config.get('license')
     });
   }
 });

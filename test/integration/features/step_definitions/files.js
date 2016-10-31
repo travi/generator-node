@@ -10,6 +10,7 @@ const tempDir = path.join(__dirname, 'temp');
 module.exports = function () {
   const initializing = sinon.spy();
   const projectName = any.word();
+  const license = any.word();
 
   this.When(/^the generator is run$/, function (callback) {
     helpers.run(path.join(__dirname, '../../../../app'))
@@ -18,6 +19,7 @@ module.exports = function () {
         initializing,
         prompting() {
           this.config.set('projectName', projectName);
+          this.config.set('license', license);
         }
       }), '@travi/git']])
       .on('end', callback);
@@ -35,7 +37,10 @@ module.exports = function () {
       'package.json'
     ]);
     assert.fileContent('.gitignore', 'node_modules/\n');
-    assert.jsonFileContent(`${tempDir}/package.json`, {name: projectName});
+    assert.jsonFileContent(`${tempDir}/package.json`, {
+      name: projectName,
+      license
+    });
 
     callback();
   });
