@@ -8,25 +8,18 @@ const any = require('@travi/any');
 const tempDir = path.join(__dirname, 'temp');
 
 module.exports = function () {
-  const initializing = sinon.spy();
   const projectName = any.word();
   const license = any.word();
 
   this.When(/^the generator is run$/, function (callback) {
     helpers.run(path.join(__dirname, '../../../../app'))
       .inDir(tempDir)
-      .withGenerators([[yeoman.Base.extend({
-        initializing,
-        prompting() {
-          this.config.set('projectName', projectName);
-          this.config.set('license', license);
-        }
-      }), '@travi/git']])
+      .withPrompts({projectName, license})
       .on('end', callback);
   });
 
   this.Then(/^the git generator was extended$/, function (callback) {
-    sinon.assert.calledOnce(initializing);
+    assert.file(['.git']);
 
     callback();
   });

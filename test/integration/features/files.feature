@@ -1,7 +1,7 @@
 Feature: Files
 
 Scenario: default prompt answers
-#  Given the user reponds to all prompts
+#  Given the user responds to all prompts
   When the generator is run
   Then the git generator was extended
   And the core files should be present
