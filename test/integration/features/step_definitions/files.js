@@ -3,16 +3,31 @@ const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 const path = require('path');
 const any = require('@travi/any');
+const mockery = require('mockery');
+const sinon = require('sinon');
 
 module.exports = function () {
   this.World = require('../support/world.js').World;
 
   const projectName = any.word();
   const license = any.word();
+  const nodeVersion = any.string();
 
   this.Before(function () {
     this.answerPromptsWith({projectName, license});
     this.tempDir = path.join(__dirname, 'temp');
+
+    mockery.registerMock('node-version-resolver', function (callback) {
+      const satisfy = sinon.stub();
+      satisfy.withArgs('*').returns(nodeVersion);
+      callback({satisfy});
+    });
+    mockery.enable({warnOnUnregistered: false});
+  });
+
+  this.After(() => {
+    mockery.disable();
+    mockery.deregisterAll()
   });
 
   this.When(/^the generator is run$/, function (callback) {
@@ -31,13 +46,15 @@ module.exports = function () {
   this.Then(/^the core files should be present$/, function (callback) {
     assert.file([
       '.gitignore',
-      'package.json'
+      'package.json',
+      '.nvmrc'
     ]);
     assert.fileContent('.gitignore', 'node_modules/\n');
     assert.jsonFileContent(`${this.tempDir}/package.json`, {
       name: projectName,
       license
     });
+    assert.fileContent('.nvmrc', `v${nodeVersion}`);
 
     callback();
   });

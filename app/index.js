@@ -1,14 +1,25 @@
+require('coffee-script/register');
 const yeoman = require('yeoman-generator');
+const Resolver = require('node-version-resolver');
 
 module.exports = yeoman.Base.extend({
   initializing() {
     this.composeWith('@travi/git', {options: this.options}, {
       local: require.resolve('@travi/generator-git/app')
     });
+
+    return new Promise((resolve, reject) => {
+      new Resolver((resolver) => {
+        this.nodeVersion = resolver.satisfy('*');
+
+        resolve();
+      });
+    });
   },
 
   configuring() {
     this.copy('_gitignore', '.gitignore');
+    this.template('_nvmrc', '.nvmrc');
   },
 
   writing() {
