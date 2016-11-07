@@ -12,9 +12,15 @@ module.exports = yeoman.Base.extend({
   },
 
   writing() {
-    this.fs.extendJSON(this.destinationPath('package.json'), {
+    const pkg = {
       name: this.options.projectName,
       license: this.options.license
-    });
+    };
+
+    if ('UNLICENSED' === this.options.license) {
+      pkg.private = true;
+    }
+
+    this.fs.extendJSON(this.destinationPath('package.json'), pkg);
   }
 });
