@@ -11,7 +11,7 @@ module.exports = function () {
 
   const projectName = any.word();
   const license = any.word();
-  const nodeVersion = any.string();
+  const nodeVersion = any.word();
 
   this.Before(function () {
     this.answerPromptsWith({projectName, license});
