@@ -5,6 +5,7 @@ Scenario: default prompt answers
   When the generator is run
   Then the git generator was extended
   And the core files should be present
+  And the required dependencies were installed
 #  And the user provided answers should be used
 
 #Scenario: manual prompt answers

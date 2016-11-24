@@ -33,5 +33,11 @@ module.exports = yeoman.Base.extend({
     }
 
     this.fs.extendJSON(this.destinationPath('package.json'), pkg);
+  },
+
+  install() {
+    this.npmInstall([
+      'npm-run-all'
+    ], {saveDev: true});
   }
 });

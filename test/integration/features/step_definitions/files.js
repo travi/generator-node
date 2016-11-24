@@ -30,15 +30,25 @@ module.exports = function () {
     mockery.deregisterAll()
   });
 
-  this.When(/^the generator is run$/, function (callback) {
+  this.When(/^the generator is run$/, {timeout: 60 * 1000}, function (callback) {
     helpers.run(path.join(__dirname, '../../../../app'))
       .inDir(this.tempDir)
+      .withOptions({skipInstall: false})
       .withPrompts(this.getPromptAnswers())
       .on('end', callback);
   });
 
   this.Then(/^the git generator was extended$/, function (callback) {
     assert.file(['.git']);
+
+    callback();
+  });
+
+  this.Then(/^the required dependencies were installed$/, function (callback) {
+    const pkg = require(`${this.tempDir}/package.json`);
+    const devDependencies = Object.keys(pkg.devDependencies);
+
+    assert(devDependencies.includes('npm-run-all'));
 
     callback();
   });
