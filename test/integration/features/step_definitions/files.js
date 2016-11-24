@@ -56,6 +56,11 @@ module.exports = function () {
     assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
     assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');
 
+    assert.fileContent('README.md', `# ${projectName}
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+`);
+
     callback();
   });
 

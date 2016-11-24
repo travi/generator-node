@@ -41,6 +41,10 @@ module.exports = yeoman.Base.extend({
     }
 
     this.fs.extendJSON(this.destinationPath('package.json'), pkg);
+
+    this.fs.write(this.destinationPath('README.md'), `${this.fs.read(this.destinationPath('README.md'))}
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+`)
   },
 
   install() {
