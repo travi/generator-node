@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "yeoman generator for node repositories",
   "scripts": {
+    "clean": "rimraf test/integration/features/step_definitions/temp",
     "tests:integration": "cucumber.js test/integration/features",
-    "test": "run-s tests:*",
+    "test": "run-s clean tests:*",
     "postpublish": "greenkeeper-postpublish"
   },
   "files": [
@@ -35,6 +36,7 @@
     "greenkeeper-postpublish": "1.0.1",
     "mockery": "2.0.0",
     "npm-run-all": "3.1.1",
+    "rimraf": "2.5.4",
     "sinon": "2.0.0-pre.4"
   }
 }
