@@ -25,7 +25,15 @@ module.exports = yeoman.Base.extend({
   writing() {
     const pkg = {
       name: this.options.projectName,
-      license: this.options.license
+      license: this.options.license,
+      scripts: {
+        commitmsg: 'validate-commit-msg'
+      },
+      config: {
+        commitizen: {
+          path: './node_modules/cz-conventional-changelog'
+        }
+      }
     };
 
     if ('UNLICENSED' === this.options.license) {
@@ -37,7 +45,10 @@ module.exports = yeoman.Base.extend({
 
   install() {
     this.npmInstall([
-      'npm-run-all'
+      'npm-run-all',
+      'husky',
+      'validate-commit-msg',
+      'cz-conventional-changelog'
     ], {saveDev: true});
   }
 });

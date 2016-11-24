@@ -49,6 +49,12 @@ module.exports = function () {
     const devDependencies = Object.keys(pkg.devDependencies);
 
     assert(devDependencies.includes('npm-run-all'));
+    assert(devDependencies.includes('husky'));
+    assert(devDependencies.includes('validate-commit-msg'));
+    assert(devDependencies.includes('cz-conventional-changelog'));
+
+    assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
+    assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');
 
     callback();
   });
