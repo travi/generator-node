@@ -52,7 +52,10 @@ module.exports = yeoman.Base.extend({
       'npm-run-all',
       'husky',
       'validate-commit-msg',
-      'cz-conventional-changelog'
+      'cz-conventional-changelog',
+      'mocha',
+      'chai',
+      '@travi/any'
     ], {saveDev: true});
   }
 });
