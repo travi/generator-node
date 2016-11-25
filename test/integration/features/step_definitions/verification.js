@@ -11,6 +11,10 @@ module.exports = function () {
     assert(devDependencies.includes('chai'));
     assert(devDependencies.includes('@travi/any'));
 
+    assert.equal(pkg.scripts['tests:unit'], 'mocha --recursive test/unit');
+    assert.equal(pkg.scripts.test, 'run-s tests:*');
+    assert.equal(pkg.scripts.precommit, 'npm test');
+
     callback();
   });
 };

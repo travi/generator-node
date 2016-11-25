@@ -27,7 +27,10 @@ module.exports = yeoman.Base.extend({
       name: this.options.projectName,
       license: this.options.license,
       scripts: {
-        commitmsg: 'validate-commit-msg'
+        'tests:unit': 'mocha --recursive test/unit',
+        test: 'run-s tests:*',
+        commitmsg: 'validate-commit-msg',
+        precommit: 'npm test'
       },
       config: {
         commitizen: {
