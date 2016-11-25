@@ -20,6 +20,7 @@ module.exports = yeoman.Base.extend({
   configuring() {
     this.copy('_gitignore', '.gitignore');
     this.template('_nvmrc', '.nvmrc');
+    this.copy('test/_mocha.opts', 'test/mocha.opts');
   },
 
   writing() {

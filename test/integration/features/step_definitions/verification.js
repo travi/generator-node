@@ -15,6 +15,9 @@ module.exports = function () {
     assert.equal(pkg.scripts.test, 'run-s tests:*');
     assert.equal(pkg.scripts.precommit, 'npm test');
 
+    assert.fileContent('test/mocha.opts', `--ui tdd
+`);
+
     callback();
   });
 };
