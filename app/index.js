@@ -20,7 +20,9 @@ module.exports = yeoman.Base.extend({
   configuring() {
     this.copy('_gitignore', '.gitignore');
     this.template('_nvmrc', '.nvmrc');
+
     this.copy('test/_mocha.opts', 'test/mocha.opts');
+    this.copy('test/_canary-test.js', 'test/unit/canary-test.js');
   },
 
   writing() {

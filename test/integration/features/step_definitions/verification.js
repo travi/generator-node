@@ -1,4 +1,5 @@
 const assert = require('yeoman-assert');
+const exec = require('child_process').exec;
 
 module.exports = function () {
   this.World = require('../support/world.js').World;
@@ -19,5 +20,9 @@ module.exports = function () {
 `);
 
     callback();
+  });
+
+  this.Then(/^npm test passes$/, function (callback) {
+    exec('npm test', callback);
   });
 };
