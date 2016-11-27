@@ -1,6 +1,7 @@
 require('coffee-script/register');
 const yeoman = require('yeoman-generator');
 const Resolver = require('node-version-resolver');
+const _ = require('lodash');
 
 module.exports = yeoman.Base.extend({
   initializing() {
@@ -17,6 +18,15 @@ module.exports = yeoman.Base.extend({
     });
   },
 
+  prompting() {
+    return this.prompt([{
+      message: 'A brief description of this project',
+      name: 'description'
+    }]).then(props => {
+      _.merge(this.options, props);
+    })
+  },
+
   configuring() {
     this.copy('_gitignore', '.gitignore');
     this.template('_nvmrc', '.nvmrc');
@@ -29,6 +39,7 @@ module.exports = yeoman.Base.extend({
     const pkg = {
       name: this.options.projectName,
       license: this.options.license,
+      description: this.options.description,
       scripts: {
         'tests:unit': 'mocha --recursive test/unit',
         test: 'run-s tests:*',
@@ -49,6 +60,8 @@ module.exports = yeoman.Base.extend({
     this.fs.extendJSON(this.destinationPath('package.json'), pkg);
 
     this.fs.write(this.destinationPath('README.md'), `${this.fs.read(this.destinationPath('README.md'))}
+${this.options.description}
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 `)
   },

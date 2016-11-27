@@ -2,6 +2,7 @@ const yeoman = require('yeoman-generator');
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 const path = require('path');
+const fs = require('fs');
 const any = require('@travi/any');
 const mockery = require('mockery');
 const sinon = require('sinon');
@@ -30,6 +31,14 @@ module.exports = function () {
     mockery.deregisterAll()
   });
 
+  this.Given('the user responds to all prompts', function (callback) {
+    this.answerPromptsWith({
+      description: any.string()
+    });
+
+    callback();
+  });
+
   this.When(/^the generator is run$/, {timeout: 60 * 1000}, function (callback) {
     helpers.run(path.join(__dirname, '../../../../app'))
       .inDir(this.tempDir)
@@ -56,12 +65,14 @@ module.exports = function () {
     assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
     assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');
 
-    assert.fileContent('README.md', `# ${projectName}
+    fs.readFile('README.md', 'utf-8', (err, content) => {
+      if (err) {
+        callback(err);
+      }
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-`);
-
-    callback();
+      assert(content.includes('[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)'));
+      callback();
+    });
   });
 
   this.Then(/^the core files should be present$/, function (callback) {
@@ -76,6 +87,14 @@ module.exports = function () {
       license
     });
     assert.fileContent('.nvmrc', `v${nodeVersion}`);
+
+    callback();
+  });
+
+  this.Then('the user provided answers should be used', function (callback) {
+    const pkg = require(`${this.tempDir}/package.json`);
+
+    assert.equal(pkg.description, this.getPromptAnswers().description)
 
     callback();
   });

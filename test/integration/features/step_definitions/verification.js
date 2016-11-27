@@ -1,5 +1,6 @@
 const assert = require('yeoman-assert');
 const exec = require('child_process').exec;
+const fs = require('fs');
 
 module.exports = function () {
   this.World = require('../support/world.js').World;
@@ -19,7 +20,14 @@ module.exports = function () {
     assert.fileContent('test/mocha.opts', `--ui tdd
 `);
 
-    callback();
+    fs.readFile('README.md', 'utf-8', (err, content) => {
+      if (err) {
+        callback(err);
+      }
+
+      assert(content.includes(this.getPromptAnswers().description));
+      callback();
+    });
   });
 
   this.Then(/^npm test passes$/, function (callback) {
