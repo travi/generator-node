@@ -18,10 +18,12 @@ module.exports = function () {
     this.answerPromptsWith({projectName, license});
     this.tempDir = path.join(__dirname, 'temp');
 
-    mockery.registerMock('node-version-resolver', function (callback) {
-      const satisfy = sinon.stub();
-      satisfy.withArgs('*').returns(nodeVersion);
-      callback({satisfy});
+    mockery.registerMock('resolve-node-version', function (range, callback) {
+      if ('*' === range) {
+        callback(null, nodeVersion);
+      } else {
+        callback(new Error('incorrect range'));
+      }
     });
     mockery.enable({warnOnUnregistered: false});
   });

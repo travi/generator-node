@@ -1,6 +1,6 @@
 require('coffee-script/register');
 const yeoman = require('yeoman-generator');
-const Resolver = require('node-version-resolver');
+const resolveNodeVersion = require('resolve-node-version');
 const _ = require('lodash');
 
 module.exports = yeoman.Base.extend({
@@ -10,8 +10,8 @@ module.exports = yeoman.Base.extend({
     });
 
     return new Promise((resolve, reject) => {
-      new Resolver((resolver) => {
-        this.nodeVersion = resolver.satisfy('*');
+      resolveNodeVersion('*', (err, version) => {
+        this.nodeVersion = version;
 
         resolve();
       });

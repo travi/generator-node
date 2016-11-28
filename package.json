@@ -28,7 +28,7 @@
     "@travi/generator-git": "1.4.3",
     "coffee-script": "1.11.1",
     "lodash": "4.17.2",
-    "node-version-resolver": "0.2.7",
+    "resolve-node-version": "0.0.2",
     "yeoman-generator": "0.24.1"
   },
   "devDependencies": {
