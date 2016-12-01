@@ -36,7 +36,7 @@
     "cucumber": "2.0.0-rc.1",
     "greenkeeper-postpublish": "1.0.1",
     "mockery": "2.0.0",
-    "npm-run-all": "3.1.1",
+    "npm-run-all": "3.1.2",
     "rimraf": "2.5.4",
     "sinon": "2.0.0-pre.4"
   }
