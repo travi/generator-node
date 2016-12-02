@@ -7,3 +7,8 @@
 [![Build Status](https://img.shields.io/travis/travi/generator-node/master.svg?style=flat)](https://travis-ci.org/travi/generator-node)
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## Installation
+```
+$ npm install @travi/generator-node -g
+```
