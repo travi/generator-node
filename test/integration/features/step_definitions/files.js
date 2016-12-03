@@ -35,7 +35,8 @@ module.exports = function () {
 
   this.Given('the user responds to all prompts', function (callback) {
     this.answerPromptsWith({
-      description: any.string()
+      description: any.string(),
+      fullName: any.word()
     });
 
     callback();
@@ -96,7 +97,8 @@ module.exports = function () {
   this.Then('the user provided answers should be used', function (callback) {
     const pkg = require(`${this.tempDir}/package.json`);
 
-    assert.equal(pkg.description, this.getPromptAnswers().description)
+    assert.equal(pkg.description, this.getPromptAnswers().description);
+    assert.equal(pkg.author, this.getPromptAnswers().fullName);
 
     callback();
   });

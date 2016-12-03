@@ -39,6 +39,7 @@ module.exports = yeoman.Base.extend({
     const pkg = {
       name: this.options.projectName,
       license: this.options.license,
+      author: this.options.fullName,
       description: this.options.description,
       scripts: {
         'tests:unit': 'mocha --recursive test/unit',
