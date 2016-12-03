@@ -1,6 +1,6 @@
 {
   "name": "@travi/generator-node",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "yeoman generator for node repositories",
   "scripts": {
     "clean": "rimraf test/integration/features/step_definitions/temp",
@@ -8,14 +8,15 @@
     "test": "run-s clean tests:*",
     "precommit": "npm test",
     "commitmsg": "validate-commit-msg",
-    "postpublish": "greenkeeper-postpublish"
+    "postpublish": "greenkeeper-postpublish",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
     "app"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/travi/generator-node.git"
+    "url": "https://github.com/travi/generator-node.git"
   },
   "publishConfig": {
     "access": "public"
@@ -45,6 +46,7 @@
     "mockery": "2.0.0",
     "npm-run-all": "3.1.2",
     "rimraf": "2.5.4",
+    "semantic-release": "6.3.2",
     "sinon": "2.0.0-pre.4",
     "validate-commit-msg": "2.8.2"
   },
