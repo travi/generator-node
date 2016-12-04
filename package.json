@@ -32,7 +32,6 @@
   "homepage": "https://github.com/travi/generator-node#readme",
   "dependencies": {
     "@travi/generator-git": "1.4.3",
-    "coffee-script": "1.12.0",
     "lodash": "4.17.2",
     "resolve-node-version": "0.0.2",
     "yeoman-generator": "0.24.1"

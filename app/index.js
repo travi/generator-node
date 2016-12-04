@@ -1,4 +1,3 @@
-require('coffee-script/register');
 const yeoman = require('yeoman-generator');
 const resolveNodeVersion = require('resolve-node-version');
 const _ = require('lodash');
