@@ -84,7 +84,8 @@ module.exports = function () {
       'package.json',
       '.nvmrc'
     ]);
-    assert.fileContent('.gitignore', 'node_modules/\n');
+    assert.fileContent('.gitignore', 'node_modules/\nlib/\n');
+    assert.fileContent('.eslintignore', 'lib/\n');
     assert.jsonFileContent(`${this.tempDir}/package.json`, {
       name: projectName,
       license
