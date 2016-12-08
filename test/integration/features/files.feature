@@ -1,6 +1,6 @@
 Feature: Files
 
-Scenario: default prompt answers
+Scenario: manual prompt answers
   Given the user responds to all prompts
   When the generator is run
   Then the git generator was extended
@@ -8,7 +8,7 @@ Scenario: default prompt answers
   And the required dependencies were installed
   And the user provided answers should be used
 
-#Scenario: manual prompt answers
+#Scenario: default prompt answers
 #  Given the user leaves defaults in all prompts
 #  When the generator is run
 #  Then the core files should be present
