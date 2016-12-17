@@ -13,8 +13,9 @@ module.exports = function () {
     assert(devDependencies.includes('chai'));
     assert(devDependencies.includes('@travi/any'));
 
+    assert.equal(pkg.scripts['lint:md'], 'markdownlint *.md');
     assert.equal(pkg.scripts['tests:unit'], 'mocha --recursive test/unit');
-    assert.equal(pkg.scripts.test, 'run-s tests:*');
+    assert.equal(pkg.scripts.test, 'run-s lint:* tests:*');
     assert.equal(pkg.scripts.precommit, 'npm test');
 
     assert.fileContent('test/mocha.opts', `--ui tdd

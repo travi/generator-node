@@ -64,6 +64,7 @@ module.exports = function () {
     assert(devDependencies.includes('husky'));
     assert(devDependencies.includes('validate-commit-msg'));
     assert(devDependencies.includes('cz-conventional-changelog'));
+    assert(devDependencies.includes('markdownlint-cli'));
 
     assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
     assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');
@@ -91,6 +92,10 @@ module.exports = function () {
       license
     });
     assert.fileContent('.nvmrc', `v${nodeVersion}`);
+    assert.jsonFileContent('.markdownlintrc', {
+      "line_length": {"code_blocks": false},
+      "commands-show-output": false
+    });
 
     callback();
   });

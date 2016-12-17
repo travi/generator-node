@@ -30,6 +30,7 @@ module.exports = yeoman.Base.extend({
     this.copy('_gitignore', '.gitignore');
     this.copy('_eslintignore', '.eslintignore');
     this.template('_nvmrc', '.nvmrc');
+    this.copy('_markdownlintrc', '.markdownlintrc');
 
     this.copy('test/_mocha.opts', 'test/mocha.opts');
     this.copy('test/_canary-test.js', 'test/unit/canary-test.js');
@@ -42,8 +43,9 @@ module.exports = yeoman.Base.extend({
       author: this.options.fullName,
       description: this.options.description,
       scripts: {
+        'lint:md': 'markdownlint *.md',
         'tests:unit': 'mocha --recursive test/unit',
-        test: 'run-s tests:*',
+        test: 'run-s lint:* tests:*',
         commitmsg: 'validate-commit-msg',
         precommit: 'npm test'
       },
@@ -75,7 +77,8 @@ ${this.options.description}
       'cz-conventional-changelog',
       'mocha',
       'chai',
-      '@travi/any'
+      '@travi/any',
+      'markdownlint-cli'
     ], {saveDev: true});
   }
 });
