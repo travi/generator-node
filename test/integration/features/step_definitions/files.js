@@ -65,6 +65,7 @@ module.exports = function () {
     assert(devDependencies.includes('validate-commit-msg'));
     assert(devDependencies.includes('cz-conventional-changelog'));
     assert(devDependencies.includes('markdownlint-cli'));
+    assert(devDependencies.includes('globstar'));
 
     assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
     assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');

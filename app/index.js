@@ -43,7 +43,7 @@ module.exports = yeoman.Base.extend({
       author: this.options.fullName,
       description: this.options.description,
       scripts: {
-        'lint:md': 'markdownlint *.md',
+        'lint:md': 'globstar --node -- markdownlint **/*.md',
         'tests:unit': 'mocha --recursive test/unit',
         test: 'run-s lint:* tests:*',
         commitmsg: 'validate-commit-msg',
@@ -78,7 +78,8 @@ ${this.options.description}
       'mocha',
       'chai',
       '@travi/any',
-      'markdownlint-cli'
+      'markdownlint-cli',
+      'globstar'
     ], {saveDev: true});
   }
 });
