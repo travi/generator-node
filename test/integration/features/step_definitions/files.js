@@ -66,6 +66,7 @@ module.exports = function () {
     assert(devDependencies.includes('cz-conventional-changelog'));
     assert(devDependencies.includes('markdownlint-cli'));
     assert(devDependencies.includes('globstar'));
+    assert(devDependencies.includes('nyc'));
 
     assert.equal(pkg.config.commitizen.path, './node_modules/cz-conventional-changelog');
     assert.equal(pkg.scripts.commitmsg, 'validate-commit-msg');
@@ -86,7 +87,10 @@ module.exports = function () {
       'package.json',
       '.nvmrc'
     ]);
-    assert.fileContent('.gitignore', 'node_modules/\nlib/\n');
+    assert.fileContent('.gitignore', `node_modules/
+lib/
+.nyc_output/
+`);
     assert.fileContent('.eslintignore', 'lib/\n');
     assert.jsonFileContent(`${this.tempDir}/package.json`, {
       name: projectName,
@@ -96,6 +100,12 @@ module.exports = function () {
     assert.jsonFileContent('.markdownlintrc', {
       "line_length": {"code_blocks": false},
       "commands-show-output": false
+    });
+    assert.jsonFileContent('.nycrc', {
+      "exclude": [
+        "**/*-test.js",
+        "scripts/"
+      ]
     });
 
     callback();

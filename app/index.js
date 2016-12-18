@@ -31,6 +31,7 @@ module.exports = yeoman.Base.extend({
     this.copy('_eslintignore', '.eslintignore');
     this.template('_nvmrc', '.nvmrc');
     this.copy('_markdownlintrc', '.markdownlintrc');
+    this.copy('_nycrc', '.nycrc');
 
     this.copy('test/_mocha.opts', 'test/mocha.opts');
     this.copy('test/_canary-test.js', 'test/unit/canary-test.js');
@@ -45,7 +46,8 @@ module.exports = yeoman.Base.extend({
       scripts: {
         'lint:md': 'globstar --node -- markdownlint **/*.md',
         'tests:unit': 'mocha --recursive test/unit',
-        test: 'run-s lint:* tests:*',
+        test: 'run-s lint:* coverage',
+        coverage: 'nyc run-s tests:unit',
         commitmsg: 'validate-commit-msg',
         precommit: 'npm test'
       },
@@ -79,7 +81,8 @@ ${this.options.description}
       'chai',
       '@travi/any',
       'markdownlint-cli',
-      'globstar'
+      'globstar',
+      'nyc'
     ], {saveDev: true});
   }
 });
