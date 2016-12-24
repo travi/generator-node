@@ -6,15 +6,17 @@ const fs = require('fs');
 const any = require('@travi/any');
 const mockery = require('mockery');
 const sinon = require('sinon');
+const defineSupportCode = require('cucumber').defineSupportCode;
+const World = require('../support/world').World;
 
-module.exports = function () {
-  this.World = require('../support/world.js').World;
+defineSupportCode(({Before, After, Given, When, Then, setWorldConstructor}) => {
+  setWorldConstructor(World);
 
   const projectName = any.word();
   const license = any.word();
   const nodeVersion = any.word();
 
-  this.Before(function () {
+  Before(function () {
     this.answerPromptsWith({projectName, license});
     this.tempDir = path.join(__dirname, 'temp');
 
@@ -28,12 +30,12 @@ module.exports = function () {
     mockery.enable({warnOnUnregistered: false});
   });
 
-  this.After(() => {
+  After(() => {
     mockery.disable();
     mockery.deregisterAll()
   });
 
-  this.Given('the user responds to all prompts', function (callback) {
+  Given('the user responds to all prompts', function (callback) {
     this.answerPromptsWith({
       description: any.string(),
       fullName: any.word()
@@ -42,7 +44,7 @@ module.exports = function () {
     callback();
   });
 
-  this.When(/^the generator is run$/, {timeout: 60 * 1000}, function (callback) {
+  When(/^the generator is run$/, {timeout: 60 * 1000}, function (callback) {
     helpers.run(path.join(__dirname, '../../../../app'))
       .inDir(this.tempDir)
       .withOptions({skipInstall: false})
@@ -50,13 +52,13 @@ module.exports = function () {
       .on('end', callback);
   });
 
-  this.Then(/^the git generator was extended$/, function (callback) {
+  Then(/^the git generator was extended$/, function (callback) {
     assert.file(['.git']);
 
     callback();
   });
 
-  this.Then(/^the required dependencies were installed$/, function (callback) {
+  Then(/^the required dependencies were installed$/, function (callback) {
     const pkg = require(`${this.tempDir}/package.json`);
     const devDependencies = Object.keys(pkg.devDependencies);
 
@@ -81,7 +83,7 @@ module.exports = function () {
     });
   });
 
-  this.Then(/^the core files should be present$/, function (callback) {
+  Then(/^the core files should be present$/, function (callback) {
     assert.file([
       '.gitignore',
       'package.json',
@@ -111,7 +113,7 @@ lib/
     callback();
   });
 
-  this.Then('the user provided answers should be used', function (callback) {
+  Then('the user provided answers should be used', function (callback) {
     const pkg = require(`${this.tempDir}/package.json`);
 
     assert.equal(pkg.description, this.getPromptAnswers().description);
@@ -119,4 +121,4 @@ lib/
 
     callback();
   });
-};
+});

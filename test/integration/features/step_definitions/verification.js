@@ -1,11 +1,13 @@
 const assert = require('yeoman-assert');
 const exec = require('child_process').exec;
 const fs = require('fs');
+const defineSupportCode = require('cucumber').defineSupportCode;
+const World = require('../support/world').World;
 
-module.exports = function () {
-  this.World = require('../support/world.js').World;
+defineSupportCode(({Then, setWorldConstructor}) => {
+  setWorldConstructor(World);
 
-  this.Then(/^tests are configured$/, function (callback) {
+  Then(/^tests are configured$/, function (callback) {
     const pkg = require(`${this.tempDir}/package.json`);
     const devDependencies = Object.keys(pkg.devDependencies);
 
@@ -32,7 +34,7 @@ module.exports = function () {
     });
   });
 
-  this.Then(/^npm test passes$/, function (callback) {
+  Then(/^npm test passes$/, function (callback) {
     exec('npm test', callback);
   });
-};
+});
