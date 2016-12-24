@@ -32,7 +32,7 @@
   "homepage": "https://github.com/travi/generator-node#readme",
   "dependencies": {
     "@travi/generator-git": "1.4.3",
-    "lodash": "4.17.2",
+    "lodash": "4.17.3",
     "resolve-node-version": "0.0.2",
     "yeoman-generator": "0.24.1"
   },
