@@ -41,7 +41,7 @@
     "cucumber": "2.0.0-rc.6",
     "cz-conventional-changelog": "1.2.0",
     "greenkeeper-postpublish": "1.0.1",
-    "husky": "0.12.0",
+    "husky": "0.13.1",
     "mockery": "2.0.0",
     "npm-run-all": "4.0.1",
     "rimraf": "2.5.4",
