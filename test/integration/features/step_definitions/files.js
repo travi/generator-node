@@ -96,7 +96,10 @@ lib/
     assert.fileContent('.eslintignore', 'lib/\n');
     assert.jsonFileContent(`${this.tempDir}/package.json`, {
       name: projectName,
-      license
+      license,
+      repository: this.githubRepo,
+      bugs: `https://github.com/${this.githubRepo}/issues`,
+      homepage: `https://github.com/${this.githubRepo}#readme`
     });
     assert.fileContent('.nvmrc', `v${nodeVersion}`);
     assert.jsonFileContent('.markdownlintrc', {

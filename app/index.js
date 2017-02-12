@@ -1,12 +1,16 @@
 const yeoman = require('yeoman-generator');
 const resolveNodeVersion = require('resolve-node-version');
 const _ = require('lodash');
+const gitConfig = require('git-config');
+const githubUrl = require('github-url-to-object');
 
 module.exports = yeoman.Base.extend({
   initializing() {
     this.composeWith('@travi/git', {options: this.options}, {
       local: require.resolve('@travi/generator-git/app')
     });
+
+    this.originUrl = gitConfig.sync()['remote "origin"'].url;
 
     return new Promise((resolve, reject) => {
       resolveNodeVersion('*', (err, version) => {
@@ -38,11 +42,16 @@ module.exports = yeoman.Base.extend({
   },
 
   writing() {
+    const githubDetails = githubUrl(this.originUrl);
+
     const pkg = {
       name: this.options.projectName,
+      description: this.options.description,
       license: this.options.license,
       author: this.options.fullName,
-      description: this.options.description,
+      repository: `${githubDetails.user}/${githubDetails.repo}`,
+      bugs: `https://github.com/${githubDetails.user}/${githubDetails.repo}/issues`,
+      homepage: `https://github.com/${githubDetails.user}/${githubDetails.repo}#readme`,
       scripts: {
         'lint:md': 'globstar --node -- markdownlint **/*.md',
         'tests:unit': 'mocha --recursive test/unit',

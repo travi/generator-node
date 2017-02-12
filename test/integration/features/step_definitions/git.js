@@ -9,11 +9,18 @@ defineSupportCode(({Before, After, setWorldConstructor}) => {
 
   let sandbox;
   const name = `${any.word()} ${any.word()}`;
+  const user = any.word();
+  const repo = any.word();
 
-  Before(() => {
+  Before(function () {
+    this.githubRepo = `${user}/${repo}`;
+
     sandbox = sinon.sandbox.create();
     sandbox.stub(gitConfig, 'sync').returns({
-      user: {name}
+      user: {name},
+      'remote "origin"': {
+        url: `git@github.com:${user}/${repo}`
+      }
     });
   });
 
