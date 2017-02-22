@@ -44,7 +44,7 @@
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.13.1",
     "mockery": "2.0.0",
-    "npm-run-all": "4.0.1",
+    "npm-run-all": "4.0.2",
     "rimraf": "2.6.0",
     "semantic-release": "6.3.2",
     "sinon": "2.0.0-pre.4",
