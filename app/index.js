@@ -1,7 +1,7 @@
 const yeoman = require('yeoman-generator');
 const resolveNodeVersion = require('resolve-node-version');
 const _ = require('lodash');
-const gitConfig = require('git-config');
+const gitConfig = require('parse-git-config');
 const githubUrl = require('github-url-to-object');
 
 module.exports = yeoman.Base.extend({

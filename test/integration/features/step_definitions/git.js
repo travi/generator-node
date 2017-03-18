@@ -1,4 +1,4 @@
-const gitConfig = require('git-config');
+const gitConfig = require('parse-git-config');
 const any = require('@travi/any');
 const sinon = require('sinon');
 const defineSupportCode = require('cucumber').defineSupportCode;
