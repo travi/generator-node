@@ -87,7 +87,8 @@ defineSupportCode(({Before, After, Given, When, Then, setWorldConstructor}) => {
     assert.file([
       '.gitignore',
       'package.json',
-      '.nvmrc'
+      '.nvmrc',
+      '.npmrc'
     ]);
     assert.fileContent('.gitignore', `node_modules/
 lib/
@@ -112,6 +113,7 @@ lib/
         "scripts/"
       ]
     });
+    assert.fileContent('.npmrc', 'save-exact=true')
 
     callback();
   });

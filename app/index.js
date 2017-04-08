@@ -36,6 +36,7 @@ module.exports = yeoman.Base.extend({
     this.template('_nvmrc', '.nvmrc');
     this.copy('_markdownlintrc', '.markdownlintrc');
     this.copy('_nycrc', '.nycrc');
+    this.copy('_npmrc', '.npmrc');
 
     this.copy('test/_mocha.opts', 'test/mocha.opts');
     this.copy('test/_canary-test.js', 'test/unit/canary-test.js');
