@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@travi/any": "1.0.7",
-    "cucumber": "2.2.0",
+    "cucumber": "2.3.0",
     "cz-conventional-changelog": "1.2.0",
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.13.4",
