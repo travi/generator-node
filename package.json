@@ -9,7 +9,9 @@
     "precommit": "npm test",
     "commitmsg": "validate-commit-msg",
     "postpublish": "greenkeeper-postpublish",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "greenkeeper:update-lockfile": "greenkeeper-lockfile-update",
+    "greenkeeper:upload-lockfile": "greenkeeper-lockfile-upload"
   },
   "files": [
     "app"
@@ -42,6 +44,7 @@
     "@travi/any": "1.0.7",
     "cucumber": "2.3.1",
     "cz-conventional-changelog": "1.2.0",
+    "greenkeeper-lockfile": "1.6.0",
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.13.4",
     "mockery": "2.0.0",
