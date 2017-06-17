@@ -34,7 +34,7 @@ defineSupportCode(({Then, setWorldConstructor}) => {
     });
   });
 
-  Then(/^npm test passes$/, function (callback) {
+  Then(/^npm test passes$/, {timeout: 60 * 1000}, function (callback) {
     exec('npm test', callback);
   });
 });
