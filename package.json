@@ -47,7 +47,7 @@
     "greenkeeper-lockfile": "1.7.1",
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.14.1",
-    "mockery": "2.0.0",
+    "mockery": "2.1.0",
     "npm-run-all": "4.0.2",
     "rimraf": "2.6.1",
     "semantic-release": "6.3.6",
