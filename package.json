@@ -8,7 +8,6 @@
     "test": "run-s clean tests:*",
     "precommit": "npm test",
     "commitmsg": "validate-commit-msg",
-    "postpublish": "greenkeeper-postpublish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "greenkeeper:update-lockfile": "greenkeeper-lockfile-update",
     "greenkeeper:upload-lockfile": "greenkeeper-lockfile-upload"
@@ -45,7 +44,6 @@
     "cucumber": "2.3.1",
     "cz-conventional-changelog": "2.0.0",
     "greenkeeper-lockfile": "1.7.2",
-    "greenkeeper-postpublish": "1.0.1",
     "husky": "0.14.3",
     "mockery": "2.1.0",
     "npm-run-all": "4.0.2",
