@@ -43,7 +43,7 @@
     "@travi/any": "1.4.0",
     "cucumber": "3.0.0",
     "cz-conventional-changelog": "2.0.0",
-    "greenkeeper-lockfile": "1.8.0",
+    "greenkeeper-lockfile": "1.8.1",
     "husky": "0.14.3",
     "mockery": "2.1.0",
     "npm-run-all": "4.0.2",
