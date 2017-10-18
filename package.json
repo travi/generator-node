@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@travi/any": "1.4.3",
-    "cucumber": "3.0.5",
+    "cucumber": "3.0.6",
     "cz-conventional-changelog": "2.0.0",
     "greenkeeper-lockfile": "1.8.1",
     "husky": "0.15.0-beta.2",
