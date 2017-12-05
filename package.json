@@ -40,7 +40,7 @@
     "yeoman-generator": "1.1.1"
   },
   "devDependencies": {
-    "@travi/any": "1.4.4",
+    "@travi/any": "1.6.0",
     "cucumber": "3.1.0",
     "cz-conventional-changelog": "2.1.0",
     "greenkeeper-lockfile": "1.8.1",
