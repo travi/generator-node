@@ -35,7 +35,7 @@
     "@travi/generator-git": "2.0.0",
     "github-url-to-object": "4.0.2",
     "lodash": "4.17.4",
-    "parse-git-config": "1.1.1",
+    "parse-git-config": "2.0.1",
     "resolve-node-version": "0.0.2",
     "yeoman-generator": "1.1.1"
   },
